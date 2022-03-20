@@ -7,8 +7,10 @@ raw_data <- read_csv(here("data", "raw-data", "exam1.csv"))
 proc_data <- rename_with(raw_data, to_snake_case)
 
 write.csv(proc_data, file="data/processed-data/processed_data.csv")
+proc_data %>% 
+    select(distance_km, error_m)
 
-dist <- proc_data$distance_km
-err <- proc_data$error_m
+data <- proc_data %>% 
+            rename(dist = distance_km, err = error_m)
 
-save(dist, err, file="data/processed-data/my-data.rda")
+save(data, err, file="data/processed-data/my-data.rda")
