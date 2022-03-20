@@ -1,0 +1,7 @@
+library(devtools)
+library(dplyr)
+library(here)
+library(viridis)
+library(hrbrthemes)
+library(formattable)
+library(tidyverse)
