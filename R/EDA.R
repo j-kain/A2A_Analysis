@@ -13,7 +13,6 @@ scatter1 <- ggplot(data, aes(x=dist, y=err)) +
             ggtitle("Errors vs distance") +
             labs(fill="Absolute error") +
             theme_ipsum_es()
-scatter1
 ggsave(filename = here("output","eda-plain-scatter.png"))
 
 # colored, transparent, and size scatter plot

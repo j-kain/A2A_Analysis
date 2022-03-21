@@ -4,9 +4,16 @@ load(file="data/processed-data/kr-data.rda")
 load(file="data/processed-data/my-data.rda")
 load(file="data/processed-data/res-data.rda")
 
+x1 <- dist
+y1 <- rep(0, length(dist))
+for(i in 1:length(dist)){
+    y1[i] <- sum((1/(h*sqrt(2*pi)))*exp(-.5*((x1[i]-dist)/h)^2)*err)/
+        sum((1/(h*sqrt(2*pi)))*exp(-.5*((x1[i]-dist)/h)^2))
+}
+o.res <- y1 - err
 
-Ey.x5 <- rep(0, 1000)
-for(k in 1:1000){
+Ey.x5 <- rep(0, 30)
+for(k in 1:30){
     # Step 1. fit model, compute original residuals
     
     # ALREADY DID THAT
@@ -24,18 +31,20 @@ for(k in 1:1000){
                  sum((1/(h*sqrt(2*pi)))*exp(-.5*((x1[i]-dist)/h)^2))
     }
     BS.yhat <- y1
-    hist(y1)
+    #hist(y1)
     
     # Step 4. turn BS.yhat into BS.y by adding a random orig residual
     
-    BS.y <- BS.yhat + sample(orig_res, length(dist), replace=TRUE)
-    hist(BS.y)
+    BS.y <- BS.yhat + sample(o.res, length(dist), replace=TRUE)
+    #hist(BS.y)
     
     # Step 5. make new model, then use new model to predict expected y when x =  whatever number we want
     
-    x_pred <- 8
-    y_pred <- sum((1/(h*sqrt(2*pi)))*exp(-.5*((x_pred-BS.x)/h)^2)*BS.y)/
-              sum((1/(h*sqrt(2*pi)))*exp(-.5*((x_pred-BS.x/h)^2)))
+    x_pred <- 7
+    
+    
+    y_pred <- sum((1/(h*sqrt(2*pi)))*exp(-.5*((7-BS.x)/h)^2)*BS.y)/
+              sum((1/(h*sqrt(2*pi)))*exp(-.5*((7-BS.x)/h)^2))
 
     y_pred
     

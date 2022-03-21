@@ -17,7 +17,7 @@ for(i in 1:length(dist)){
 o.res <- y1 - err
 
 # residual plots to check constant variance
-ggplot(data, aes(x=err_hat, y=orig_res)) +
+ggplot(data, aes(x=err_hat, y=o.res)) +
     geom_point(alpha=.5) +
     stat_smooth(method="loess", color = "red", se = FALSE, lwd=.7) +
     ylab("Residuals") +
@@ -27,7 +27,7 @@ ggplot(data, aes(x=err_hat, y=orig_res)) +
 ggsave(filename = here("output","residual-variance-plot.png"))
 
 # qq plot to check constant variance and non-normality
-ggplot(data, aes(sample=orig_res)) +
+ggplot(data, aes(sample=o.res)) +
     stat_qq(shape=21) +
     ylab("Sample Quantiles") +
     xlab("Theoretical Quantiles") +
@@ -36,7 +36,7 @@ ggplot(data, aes(sample=orig_res)) +
 ggsave(filename = here("output","residual-normality-plot.png"))
 
 # residual plot to check mean = 0, non-linearity
-ggplot(data, aes(x=err_hat, y=orig_res)) +
+ggplot(data, aes(x=err_hat, y=o.res)) +
     geom_point(alpha=.5) +
     geom_hline(yintercept=0, color = "red",lwd=.7, lty=2) +
     ylab("Residuals") +
@@ -47,4 +47,4 @@ ggsave(filename = here("output","residual-linearity-plot.png"))
 
 
 
-save(orig_res, file="data/processed-data/res-data.rda")
+save(o.res, file="data/processed-data/res-data.rda")
