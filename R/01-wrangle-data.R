@@ -13,4 +13,7 @@ proc_data %>%
 data <- proc_data %>% 
             rename(dist = distance_km, err = error_m)
 
-save(data, err, file="data/processed-data/my-data.rda")
+dist <- data$dist
+err <- data$err
+
+save(data, err, dist, file="data/processed-data/my-data.rda")

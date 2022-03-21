@@ -27,7 +27,6 @@ box1 <- data %>%
                 stat_summary(fun=mean, geom="point", shape=20, size=2, color="orange", fill="orange") +
                 ggtitle("Errors for 1-km intervals of distance") +
                 theme_ipsum_es()
-box1
 ggsave(filename = here("output","eda-box1.png"))
 
 
