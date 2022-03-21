@@ -5,7 +5,7 @@ load(file="data/processed-data/my-data.rda")
 
 
 # compute original residuals with non-parametric model (kernel regression)
-err_hat1 <- kernel_reg(dist, h)
+err_hat <- kernel_reg(dist, h)
 orig_res <- err_hat - err
 
 x1 <- dist

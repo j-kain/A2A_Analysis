@@ -22,7 +22,7 @@ ggplot(data=df1, aes(x=x, xend=x, y=lb, yend=ub)) +
     geom_text(aes(label=round(lb,3)), col="black", size=3.5) +
     geom_text(aes(y=ub, label=round(ub,3)), col="black",size=3.5) +
     lims(y=c(-1.5,1.5)) +
-    ylab("Errors") +
+    ylab("Error in meters") +
     xlab("Distance") +
     theme_ipsum_es() +
     geom_hline(yintercept = 0, color="orangered3", lty=2, lwd=1) +

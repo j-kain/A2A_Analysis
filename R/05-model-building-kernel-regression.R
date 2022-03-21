@@ -41,4 +41,3 @@ ggsave(filename = here("output","kernel-model.png"))
 
 save(h, xi, file="data/processed-data/kr-data.rda")
 
-(max(dist)-min(dist))/99
