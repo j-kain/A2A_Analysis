@@ -7,4 +7,5 @@ library(formattable)
 library(tidyverse)
 library(snakecase)
 library(extrafont)
+library(magick)
 

@@ -24,7 +24,7 @@ ggplot(data, aes(x=err_hat, y=o.res)) +
     xlab("Fitted error values ( m )") +
     ggtitle("Residual Analysis - Constant Variance") +
     theme_ipsum_es()
-ggsave(filename = here("output","residual-variance-plot.png"))
+ggsave(filename = here("output","residual-variance-plot.png"), width = 10, height = 6)
 
 # qq plot to check constant variance and non-normality
 ggplot(data, aes(sample=o.res)) +
@@ -33,7 +33,7 @@ ggplot(data, aes(sample=o.res)) +
     xlab("Theoretical Quantiles") +
     ggtitle("Normal Q-Q Plot") +
     theme_ipsum_es()
-ggsave(filename = here("output","residual-normality-plot.png"))
+ggsave(filename = here("output","residual-normality-plot.png"), width = 10, height = 6)
 
 # residual plot to check mean = 0, non-linearity
 ggplot(data, aes(x=err_hat, y=o.res)) +
@@ -43,7 +43,7 @@ ggplot(data, aes(x=err_hat, y=o.res)) +
     xlab("Fitted error values ( m )") +
     ggtitle("Residual Analysis - Linearity") +
     theme_ipsum_es()
-ggsave(filename = here("output","residual-linearity-plot.png"))
+ggsave(filename = here("output","residual-linearity-plot.png"), width = 10, height = 6)
 
 
 

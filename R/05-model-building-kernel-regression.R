@@ -36,7 +36,7 @@ ggplot(data, aes(x=dist, y=err)) +
     ylab("Error ( m )") +
     ggtitle("Kernel Regression Model") +
     theme_ipsum_es()
-ggsave(filename = here("output","kernel-model.png"))
+ggsave(filename = here("output","kernel-model.png"), width = 10, height = 6)
 
 
 save(h, xi, file="data/processed-data/kr-data.rda")

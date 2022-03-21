@@ -28,5 +28,6 @@ ggplot(data=df1, aes(x=x, xend=x, y=lb, yend=ub)) +
     geom_hline(yintercept = 0, color="orangered3", lty=2, lwd=1) +
     ggtitle("Prediction Intervals") +
     coord_flip()
+
 ggsave(filename = here("output","prediction-intervals.png"))
 

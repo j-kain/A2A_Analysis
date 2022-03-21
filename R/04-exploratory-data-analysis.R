@@ -1,5 +1,4 @@
 source(here::here("R/00-package-loading.R"))
-
 load(file="data/processed-data/my-data.rda")
 
 
@@ -13,7 +12,7 @@ ggplot(data, aes(x=dist, y=err)) +
     ggtitle("Errors vs distance") +
     labs(fill="Absolute error") +
     theme_ipsum_es()
-ggsave(filename = here("output","eda-plain-scatter.png"))
+ggsave(filename = here("output","eda-plain-scatter.png"), width = 10, height = 6)
 
 # colored, transparent, and size scatter plot
 ggplot(data, aes(x=dist, y=err, fill=abs(err))) +
@@ -25,7 +24,7 @@ ggplot(data, aes(x=dist, y=err, fill=abs(err))) +
     ggtitle("Errors vs distance") +
     labs(fill="Absolute error") +
     theme_ipsum_es()
-ggsave(filename = here("output","eda-color-size-scatter.png"))
+ggsave(filename = here("output","eda-color-size-scatter.png"), width = 10, height = 6)
 
 # box plots of binned distance and errors  
 data %>% 
@@ -39,7 +38,30 @@ data %>%
         stat_summary(fun=mean, geom="point", shape=20, size=2, color="orange", fill="orange") +
         ggtitle("Errors for 1-km intervals of distance") +
         theme_ipsum_es()
-ggsave(filename = here("output","eda-box1.png"))
+ggsave(filename = here("output","eda-box1.png"), width = 10, height = 6)
+
+
+
+summary <- as_tibble(apply(data, 2, fivenum))
+
+summary <- summary %>%
+    add_column(stat=c("Min", "Q1", "Median", "Q2", "Max"), .before = "dist")
+
+summary$err <- format(summary$err, digits=3,scientific=TRUE)
+summary$dist <- format(summary$dist, digits=3,scientific=TRUE)
+
+#table stuff
+f1 <- formattable(summary,
+            align=c("l","c","c"),
+            list(
+                err = color_tile("#ffafa3", "#FA614B"),
+                dist = color_tile("#DeF7E9", "#71CA97")
+            ))
+
+
+
+f1
+
 
 
 
