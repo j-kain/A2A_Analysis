@@ -26,6 +26,7 @@ xi <- seq(min(dist), max(dist), length.out=length(dist))
 # use kernel regression to find fitted values (fitted error values)
 err_hat <- kernel_reg(xi, h)
 
+
 # graph the scatterplot plus kernel regression model
 ggplot(data, aes(x=dist, y=err)) +
     geom_point(shape=21, size=3, fill="black",alpha=.4)  +
@@ -40,3 +41,4 @@ ggsave(filename = here("output","kernel-model.png"))
 
 save(h, xi, file="data/processed-data/kr-data.rda")
 
+(max(dist)-min(dist))/99
