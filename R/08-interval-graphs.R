@@ -4,17 +4,6 @@ load(file="data/processed-data/my-data.rda")
 load(file="data/processed-data/res-data.rda")
 load(file="data/processed-data/pi-data.rda")
 
-
-
-#table stuff
-formattable(data,
-            align=c("l","l"),
-            list(
-                err = color_tile("#DeF7E9", "#71CA97")
-            ))
-
-df1 <- data.frame(x=c(".1-km", "1-km", "10-km"), y=c(0,0,1), lb=c(lb.1, lb1, lb10), ub=c(ub.1, ub1, ub10))
-
 ggplot(data=df1, aes(x=x, xend=x, y=lb, yend=ub)) +
     geom_segment(lwd=1.5, color="grey50", alpha=.7) +
     geom_point(size=14, color="transparent", shape=21, fill="indianred") +

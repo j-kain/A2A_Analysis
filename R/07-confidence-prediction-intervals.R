@@ -4,15 +4,8 @@ load(file="data/processed-data/kr-data.rda")
 load(file="data/processed-data/my-data.rda")
 load(file="data/processed-data/res-data.rda")
 
-x1 <- dist
-y1 <- rep(0, length(dist))
-for(i in 1:length(dist)){
-    y1[i] <- sum((1/(h*sqrt(2*pi)))*exp(-.5*((x1[i]-dist)/h)^2)*err)/
-        sum((1/(h*sqrt(2*pi)))*exp(-.5*((x1[i]-dist)/h)^2))
-}
-o.res <- y1 - err
 
-sim <- 200
+sim <- 1000
 Ey <- matrix(0, nrow=sim, ncol=3)
 for(k in 1:sim){
     # Step 1. fit model, compute original residuals
@@ -36,7 +29,7 @@ for(k in 1:sim){
     
     # Step 4. turn BS.yhat into BS.y by adding a random orig residual
     
-    BS.y <- BS.yhat + sample(o.res, length(dist), replace=TRUE)
+    BS.y <- BS.yhat + sample(orig_res, length(dist), replace=TRUE)
     #hist(BS.y)
     
     # Step 5. make new model, then use new model to predict expected y when x =  whatever number we want
@@ -58,7 +51,7 @@ for(k in 1:sim){
 }
 
 Ey[is.na(Ey)] <- 0
-sorted_Ey <- apply(Ey, 2, sort); sorted_Ey
+sorted_Ey <- apply(Ey, 2, sort)
 
 lb_.1 <- sorted_Ey[.025*sim,1]
 ub_.1 <- sorted_Ey[.975*sim,1]
@@ -68,8 +61,6 @@ ub_1 <- sorted_Ey[.975*sim,2]
 
 lb_10 <- sorted_Ey[.025*sim,3]
 ub_10 <- sorted_Ey[.975*sim,3]
-# lb <- sort(Ey)[.025*sim,1]
-# ub <- sort(Ey)[.975*sim,1]
 
 
 plot(dist, err, xlim=c(0,11))
@@ -113,7 +104,6 @@ lb10;ub10
 
 save(lb_.1, ub_.1, lb_1, ub_1, lb_10, ub_10, file="data/processed-data/ci-data.rda")
 save(lb.1, ub.1, lb1, ub1, lb10, ub10, file="data/processed-data/pi-data.rda")
-
 
 
 
