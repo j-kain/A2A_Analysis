@@ -112,7 +112,7 @@ lines(c(1,1), c(lb1,ub1), col=4, lwd=3)
 lb10;ub10
 
 save(lb_.1, ub_.1, lb_1, ub_1, lb_10, ub_10, file="data/processed-data/ci-data.rda")
-save(lb.1, ub.1, lb1, ub1, lb10, ub10, file="data/processed-data/ci-data.rda")
+save(lb.1, ub.1, lb1, ub1, lb10, ub10, file="data/processed-data/pi-data.rda")
 
 
 
